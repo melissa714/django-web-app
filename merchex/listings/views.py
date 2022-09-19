@@ -9,3 +9,13 @@ def hello(request):
 
 def about(request):
     return HttpResponse('<h1> A propos</h1> <p>Nous adorons merch!</p>')
+
+
+
+
+def listings(request):
+    return render(request,'listings/listings.html')
+
+
+def contact(request):
+    return render(request,'listings/contact.html')
