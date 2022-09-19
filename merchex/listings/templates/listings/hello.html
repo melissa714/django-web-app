@@ -11,7 +11,48 @@
     </head>
     <body>
        
+        <h1>Mes groupes préférés sont:</h1>
+
+        {% comment %} <ul>
+            <li>{{bands.0.name}}</li>
+            <li>{{bands.1.name}}</li>
+            <li>{{bands.2.name}}</li>
+
+        </ul> {% endcomment %}
+{% comment %} 
+<ul>
+        {% for band in bands %}
         
+        <li>{{band.name|lower}}</li>
+     
+        {% endfor %}
+
+</ul> {% endcomment %}
+
+
+    {% comment %} <p>j' ai {{ bands|length }}</p> {% endcomment %}
+
+
+    <p>
+        j'ai ...
+        {{ bands|length}}
+
+        {% if bands|length < 5 %}
+        peu de 
+        {% elif bands|length < 10 %}
+            quelques
+        {% else %}
+        beaucoup
+        {% endif %}
+        groupes préférés
+
+
+
+
+    </p>
+
+
+
         <script src="" async defer></script>
     </body>
 </html>
