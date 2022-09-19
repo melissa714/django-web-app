@@ -1,58 +1,23 @@
-<!DOCTYPE html>
 
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
        
-        <h1>Mes groupes préférés sont:</h1>
+{% extends 'listings/base.html' %}
 
-        {% comment %} <ul>
-            <li>{{bands.0.name}}</li>
-            <li>{{bands.1.name}}</li>
-            <li>{{bands.2.name}}</li>
 
-        </ul> {% endcomment %}
-{% comment %} 
+
+{% block content %}
+    
+  <h1>Hello Django</h1>
+
 <ul>
         {% for band in bands %}
         
-        <li>{{band.name|lower}}</li>
+        <li>{{band.name}}</li>
      
         {% endfor %}
 
-</ul> {% endcomment %}
-
-
-    {% comment %} <p>j' ai {{ bands|length }}</p> {% endcomment %}
-
-
-    <p>
-        j'ai ...
-        {{ bands|length}}
-
-        {% if bands|length < 5 %}
-        peu de 
-        {% elif bands|length < 10 %}
-            quelques
-        {% else %}
-        beaucoup
-        {% endif %}
-        groupes préférés
+</ul> 
 
 
 
-
-    </p>
-
-
-
-        <script src="" async defer></script>
-    </body>
-</html>
+{% endblock  %}
+    

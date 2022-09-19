@@ -1,0 +1,25 @@
+nav ul
+{
+    list-style: none;
+    border : 3px solid grey; 
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav li
+{
+    margin-left: 50px;
+}
+
+nav a:hover
+{
+    color: orange;
+    text-decoration: underline;
+
+    
+}
+
+nav a{
+    text-decoration: none;
+        padding-bottom: 3px;
+}
