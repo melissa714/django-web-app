@@ -16,6 +16,7 @@ class Band(models.Model):
     year_formed=models.IntegerField(validators=[MinValueValidator(1900), MaxValueValidator(2022)])
     active=models.BooleanField(default=True)
     official_homepage=models.URLField(null=True,blank=True)
+    #like_new =models.BooleanField(default=False)
 
     
     def __str__(self) -> str:
@@ -33,3 +34,6 @@ class Listing(models.Model):
     year = models.DateField(null=True)
     type=models.CharField(max_length=100,choices=Annonce.choices)
     band=models.ForeignKey(Band,null=True,on_delete=models.SET_NULL)
+    
+    def __str__(self):
+        return f'{self.Title}'

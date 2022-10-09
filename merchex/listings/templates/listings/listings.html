@@ -4,12 +4,15 @@
 
 {% block content %}
     
-  <h1>Hello Django</h1>
+  <h1> La liste </h1>
 
 <ul>
-        {% for band in bands %}
+        {% for listing in listings %}
         
-        <li>{{band.name}}</li>
+        <li><a href="{% url 'listings_detail' listing.id %}">{{ listing.Title }}</a></li>
+        
+
+
      
         {% endfor %}
 
