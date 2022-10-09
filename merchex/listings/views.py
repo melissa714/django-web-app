@@ -2,9 +2,8 @@ from django.shortcuts import redirect, render
 from  django.http import HttpResponse
 from listings.models import Band,Listing
 from django.shortcuts import get_object_or_404
-from listings.forms import ContactUsForm
+from  .forms import ContactUsForm,BandForm
 from django.core.mail import send_mail
-
 
 def about(request):
     return HttpResponse('<h1> A propos</h1> <p>Nous adorons merch!</p>')
@@ -55,3 +54,15 @@ def band_detail(request,id):
 
 def email(request):
     return HttpResponse("Felicitation ok")
+
+
+def band_create(request):
+    if request.method =='POST':    
+        form=BandForm(request.POST)
+        if form.is_valid():
+           band= form.save()
+           return redirect('band-detail', band.id)
+    else:
+        form = BandForm()
+            
+    return render(request,'listings/band_create.html',{'form':form})
