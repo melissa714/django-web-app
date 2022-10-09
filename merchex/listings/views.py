@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from  django.http import HttpResponse
 from listings.models import Band,Listing
 from django.shortcuts import get_object_or_404
+from listings.forms import ContactUsForm
+from django.core.mail import send_mail
 
 
 def about(request):
@@ -26,11 +28,30 @@ def listings_detail(request,id):
 
 
 
-def contact(request):
-    return render(request,'listings/contact.html')
+def Contact(request):
+    if request.method =='POST':
+        form=ContactUsForm(request.POST)
+        
+        if form.is_valid():
+            send_mail(
+                
+                subject=f'Message from {form.cleaned_data["name"] or "anonyme"} via Merchex Contact Us form',
+                message = form.cleaned_data['message'],
+                from_email=form.cleaned_data['email'],
+                recipient_list=['kanangemelissanguessan@gmail.com'],
+            )
+            return redirect('email-sent')
+    else:
+        form=ContactUsForm()
+    return render(request,'listings/contact.html',{'form':form})
 
 
 
 def band_detail(request,id):
     band = get_object_or_404(Band,id=id)
     return render(request,'listings/band_detail.html',{'band':band})
+
+
+
+def email(request):
+    return HttpResponse("Felicitation ok")
