@@ -28,6 +28,10 @@ urlpatterns = [
     path('email-sent/', views.email, name='email-sent'),
     path('bands/add/', views.band_create, name='band-create'),
     path('listings/add/', views.listing_create, name='listing-create'),
+    path('bands/<int:id>/change/', views.band_update, name='band-update'),
+    path('listings/<int:id>/change/', views.listing_update, name='listing-update'),
+
+
 
 
 

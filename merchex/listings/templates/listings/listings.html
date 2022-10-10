@@ -9,7 +9,12 @@
 <ul>
         {% for listing in listings %}
         
-        <li><a href="{% url 'listings-detail' listing.id %}">{{ listing.Title }}</a></li>
+        <li><a href="{% url 'listings-detail' listing.id %}">{{ listing.Title }}</a>
+        
+        <a href="{% url 'listing-update' listing.id %}">Modifier cette liste </a>
+
+        
+        </li>
         
 
 
