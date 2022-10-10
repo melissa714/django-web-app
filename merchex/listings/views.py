@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from  django.http import HttpResponse
 from listings.models import Band,Listing
 from django.shortcuts import get_object_or_404
-from  .forms import ContactUsForm,BandForm
+from  .forms import ContactUsForm,BandForm,ListingForm
 from django.core.mail import send_mail
 
 def about(request):
@@ -55,14 +55,36 @@ def band_detail(request,id):
 def email(request):
     return HttpResponse("Felicitation ok")
 
+# listings/views.py
+
 
 def band_create(request):
-    if request.method =='POST':    
-        form=BandForm(request.POST)
+    if request.method == 'POST':
+        form = BandForm(request.POST)
         if form.is_valid():
-           band= form.save()
-           return redirect('band-detail', band.id)
+            # créer une nouvelle « Band » et la sauvegarder dans la db
+            band = form.save()
+            # redirige vers la page de détail du groupe que nous venons de créer
+            # nous pouvons fournir les arguments du motif url comme arguments à la fonction de redirection
+            return redirect('band-detail', band.id)
+
     else:
-        form = BandForm()
-            
-    return render(request,'listings/band_create.html',{'form':form})
+        form=BandForm()
+
+    return render(request,'listings/band_create.html',{'form': form})
+
+
+def listing_create(request):
+    if request.method == 'POST':
+        form = ListingForm(request.POST)
+        if form.is_valid():
+            # créer une nouvelle « Band » et la sauvegarder dans la db
+            listings = form.save()
+            # redirige vers la page de détail du groupe que nous venons de créer
+            # nous pouvons fournir les arguments du motif url comme arguments à la fonction de redirection
+            return redirect('listings-detail', listings.id)
+
+    else:
+        form = ListingForm()
+
+    return render(request, 'listings/listings_create.html', {'form': form})
