@@ -12,6 +12,8 @@
         <li>
           <a href="{% url 'band-detail' band.id %}">{{ band.name }}</a>
            <a href="{% url 'band-update' band.id %}">[modifier]</a>
+            <a href="{% url 'band-delete' band.id %}">[suppression]</a>
+
 
         
         </li>
